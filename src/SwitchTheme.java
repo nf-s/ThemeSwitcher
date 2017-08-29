@@ -1,6 +1,6 @@
-import apple.laf.AquaLookAndFeel;
 import com.intellij.ide.ui.UISettings;
 import com.intellij.ide.ui.laf.darcula.DarculaLaf;
+import com.intellij.ide.ui.laf.IntelliJLaf;
 import com.intellij.openapi.actionSystem.impl.ActionToolbarImpl;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-class SwitchTheme {
+public class SwitchTheme {
 
     private final ColorSchemeManager colorSchemeManager = new ColorSchemeManagerImpl();
 
@@ -42,7 +42,6 @@ class SwitchTheme {
         calendar.setTimeInMillis(Long.valueOf(settings.timeToDarkMs));
         String darkTime = df.format(calendar.getTime());
 
-
         boolean darkTheme = false;
         try {
             darkTheme = !isTimeBetweenTwoTime(lightTime, darkTime, nowTime);
@@ -56,7 +55,7 @@ class SwitchTheme {
             if (darkTheme)
                 UIManager.setLookAndFeel(new DarculaLaf());
             else
-                UIManager.setLookAndFeel(new AquaLookAndFeel());
+                UIManager.setLookAndFeel(new IntelliJLaf());
 
             JBColor.setDark(this.useDarkTheme(currentScheme));
             IconLoader.setUseDarkIcons(this.useDarkTheme(currentScheme));
@@ -91,7 +90,7 @@ class SwitchTheme {
             if (currentScheme.equals(DEFAULT_THEME))
                 UIManager.setLookAndFeel(new DarculaLaf());
             else
-                UIManager.setLookAndFeel(new AquaLookAndFeel());
+                UIManager.setLookAndFeel(new IntelliJLaf());
             JBColor.setDark(this.useDarkTheme(currentScheme));
             IconLoader.setUseDarkIcons(this.useDarkTheme(currentScheme));
 
